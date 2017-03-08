@@ -1,0 +1,1 @@
+../available/redis_alias.completion.bash

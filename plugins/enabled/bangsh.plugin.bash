@@ -1,0 +1,1 @@
+../available/bangsh.plugin.bash

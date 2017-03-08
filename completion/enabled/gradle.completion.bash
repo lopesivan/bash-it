@@ -1,0 +1,1 @@
+../available/gradle.completion.bash

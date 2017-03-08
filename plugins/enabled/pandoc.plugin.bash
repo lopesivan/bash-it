@@ -1,0 +1,1 @@
+../available/pandoc.plugin.bash
