@@ -1,6 +1,12 @@
 cite about-plugin
 about-plugin 'Add a gw command to use gradle wrapper if present, else use system gradle'
 
+# gradle
+if [ -d "/opt/gradle" ]; then
+  export GRADLE_HOME="/opt/gradle"
+  export PATH="$PATH:$GRADLE_HOME/bin"
+fi
+
 function gw() {
   local file="gradlew"
   local curr_path="${PWD}"

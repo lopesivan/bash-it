@@ -1,6 +1,3 @@
-# Define this here so it can be used by all of the Powerline themes
-THEME_CHECK_SUDO=${THEME_CHECK_SUDO:=true}
-
 function set_color {
   if [[ "${1}" != "-" ]]; then
     fg="38;5;${1}"
@@ -16,10 +13,8 @@ function __powerline_user_info_prompt {
   local user_info=""
   local color=${USER_INFO_THEME_PROMPT_COLOR}
 
-  if [[ "${THEME_CHECK_SUDO}" = true ]]; then
-    if sudo -n uptime 2>&1 | grep -q "load"; then
-      color=${USER_INFO_THEME_PROMPT_COLOR_SUDO}
-    fi
+  if sudo -n uptime 2>&1 | grep -q "load"; then
+    color=${USER_INFO_THEME_PROMPT_COLOR_SUDO}
   fi
   case "${POWERLINE_PROMPT_USER_INFO_MODE}" in
     "sudo")

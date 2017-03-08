@@ -20,8 +20,6 @@ SCM_THEME_BRANCH_TRACK_PREFIX=' → '
 SCM_THEME_BRANCH_GONE_PREFIX=' ⇢ '
 SCM_THEME_CURRENT_USER_PREFFIX=' ☺︎ '
 SCM_THEME_CURRENT_USER_SUFFIX=''
-SCM_THEME_CHAR_PREFIX=''
-SCM_THEME_CHAR_SUFFIX=''
 
 THEME_BATTERY_PERCENTAGE_CHECK=${THEME_BATTERY_PERCENTAGE_CHECK:=true}
 
@@ -94,16 +92,6 @@ function scm_prompt_vars {
 function scm_prompt_info {
   scm
   scm_prompt_char
-  scm_prompt_info_common
-}
-
-function scm_prompt_char_info {
-  scm_prompt_char
-  echo -ne "${SCM_THEME_CHAR_PREFIX}${SCM_CHAR}${SCM_THEME_CHAR_SUFFIX}"
-  scm_prompt_info_common
-}
-
-function scm_prompt_info_common {
   SCM_DIRTY=0
   SCM_STATE=''
 
@@ -441,7 +429,7 @@ function hg_prompt_info() {
 
 function scm_char {
   scm_prompt_char
-  echo -e "${SCM_THEME_CHAR_PREFIX}${SCM_CHAR}${SCM_THEME_CHAR_SUFFIX}"
+  echo -e "$SCM_CHAR"
 }
 
 function prompt_char {
@@ -476,22 +464,11 @@ function aws_profile {
 }
 
 function safe_append_prompt_command {
-    local prompt_re
-
-    # Set OS dependent exact match regular expression
-    if [[ ${OSTYPE} == darwin* ]]; then
-      # macOS
-      prompt_re="[[:<:]]${1}[[:>:]]"
-    else
-      # Linux, FreeBSD, etc.
-      prompt_re="\<${1}\>"
-    fi
-
-    if [[ ${PROMPT_COMMAND} =~ ${prompt_re} ]]; then
-      return
-    elif [[ -z ${PROMPT_COMMAND} ]]; then
-      PROMPT_COMMAND="${1}"
-    else
-      PROMPT_COMMAND="${1};${PROMPT_COMMAND}"
+    if [[ -n $1 ]] ; then
+        case $PROMPT_COMMAND in
+            *$1*) ;;
+            "") PROMPT_COMMAND="$1";;
+            *) PROMPT_COMMAND="$1;$PROMPT_COMMAND";;
+        esac
     fi
 }

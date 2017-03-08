@@ -37,6 +37,7 @@ for i in ${PROJECT_PATHS//:/$'\n'}; do
     dests+=("$i/$1")
   fi
 done
+echo -e '➡ ' "\e[40;33;1m${i}/${1}\e[0m"
 
 
 # when multiple destinations are found, present a menu

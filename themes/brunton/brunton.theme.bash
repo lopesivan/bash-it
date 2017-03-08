@@ -27,7 +27,7 @@ scm_prompt() {
 }
 
 prompt() {
-  PS1="${white}${background_blue} \u${normal}${background_blue}@${red}${background_blue}\h $(clock_prompt) ${reset_color}${normal} $(battery_charge)\n${bold_black}${background_white} \w ${normal}$(scm_prompt)$(is_vim_shell)\n${white}>${normal} "
+  PS1="${white}${background_blue} \u${normal}${background_blue}@${red}${background_blue}dev-pc $(clock_prompt) ${reset_color}${normal} $(battery_charge)\n${bold_black}${background_white} \w ${normal}$(scm_prompt)$(is_vim_shell)\n${white}>${normal} "
 }
 
 THEME_CLOCK_COLOR=${THEME_CLOCK_COLOR:-"$blue$background_white"}

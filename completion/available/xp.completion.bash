@@ -30,17 +30,39 @@
 # ----------------------------------------------------------------------------
 # Run!
 
-_makefile()
+_xp()
 {
-    local cur prev opts
     COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="$( grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' ./Makefile |sed 's/[^a-zA-Z0-9_-]*$//')"
+    local word="${COMP_WORDS[COMP_CWORD]}"
 
-    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
-    return 0
+    if [ "$COMP_CWORD" -eq 1 ]; then
+        COMPREPLY=( $(compgen -W "$(xp commands)" -- "$word") )
+    else
+        local words=("${COMP_WORDS[@]}")
+
+        case x${words[1]} in
+            xe|xls|xrm|xcopy|xlink)
+                unset words[0]
+                unset words[$COMP_CWORD]
+                local completions=$(xp keys "${words[@]}")
+                COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+            ;;
+            xcp|xln)
+                unset words[0]
+                unset words[$COMP_CWORD]
+                local completions=$(xp x "${words[@]}")
+                COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+            ;;
+            xadd)
+                unset words[0]
+                unset words[$COMP_CWORD]
+                local completions=$( find . -maxdepth 1 -type f -printf "%P\n" )
+                COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+            ;;
+        esac
+
+    fi
 }
 
-complete -F _makefile make
+complete -F _xp xp
 

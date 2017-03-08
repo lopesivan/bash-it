@@ -30,17 +30,17 @@
 # ----------------------------------------------------------------------------
 # Run!
 
-_makefile()
+_redis_get()
 {
     local cur prev opts
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="$( grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' ./Makefile |sed 's/[^a-zA-Z0-9_-]*$//')"
+    opts=`redis.keys | grep -v vimmru| sed.joinlines`
 
     COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
     return 0
 }
 
-complete -F _makefile make
+complete -F _redis_get redis.get redis.del redis.list
 
