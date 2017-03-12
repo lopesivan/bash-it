@@ -21,8 +21,11 @@ alias l='ls -CF'                                       #
 alias vim.plug.install='vim +PlugInstall +qall'
 alias vim.rplug='vim +UpdateRemotePlugins +qall'
 alias vc='vim -c:Cheetah'
+alias vx='vim "$(xpaste)"'
 alias restart.unity='sudo service lightdm restart'
 alias vimmru.list='redis-cli ZRANGE vimmru 0 -1'
+alias asciiflow="firefox file:///${HOME}/developer/asciiflow2/index.html"
+
 _redis_list(){
 	redis-cli ZRANGE $1 0 -1
 }
