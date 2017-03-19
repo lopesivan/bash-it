@@ -99,7 +99,7 @@ wd() {
       echo "$point_list" | grep "$2"
       return 0
     ;;
-    x-h | x--help | x)
+    x-h | x--help)
       echo "Usage: wd [command] <point_name>"
       echo "Commands:"
       echo "  add <point_name>    Adds the current working directory to your warp points"
@@ -110,6 +110,10 @@ wd() {
       echo "  -                   warps to previous working directory"
       echo "  -h, --help          Prints this lovely message"
       return 0
+    ;;
+    x)
+      cd /workspace
+      return $?
     ;;
     x-)
       cd -

@@ -36,8 +36,8 @@ _makefile()
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="$( grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' ./Makefile |sed 's/[^a-zA-Z0-9_-]*$//')"
-
+    #opts="$( grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' ./Makefile |sed 's/[^a-zA-Z0-9_-]*$//')"
+    opts="$( make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' )"
     COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
     return 0
 }

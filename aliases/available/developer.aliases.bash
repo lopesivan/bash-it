@@ -43,7 +43,8 @@ alias redis.del='redis-bash-cli del'
 alias redis.zadd='_redis_zram'
 alias vimmru.del='redis-cli DEL vimmru'
 alias nyaovim='node ~/.ndenv/versions/v7.4.0/bin/nyaovim'
-alias email.uff='EMAILBOX=uff mutt'
-alias email.ufrj='EMAILBOX=ufrj mutt'
+alias uff='EMAILBOX=uff mutt'
+alias ufrj='EMAILBOX=ufrj mutt'
+alias desliga='systemctl enable poweroff.target'
 
 # vi:set nu nowrap:
