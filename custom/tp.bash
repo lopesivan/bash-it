@@ -11,7 +11,7 @@ export SHELLSCRIPT_PAKAGES=/home/ivan/developer/scripts/tp/archive-shellscript-p
 
 mvToTemplate ()
 {
-  cp $* $SHELLSCRIPT_TEMPLATE_PKG
+  cp *.templatefile $SHELLSCRIPT_TEMPLATE_PKG
 }
 goTemplate ()
 {
