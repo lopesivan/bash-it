@@ -8,7 +8,7 @@ _wdd() {
 }
 
 _warp_points() {
-  ls "$(_wdd)"| sed 's|@||'
+  ls "$(_wdd)/"| sed 's|@||'
 }
 
 _point_from_path() {
@@ -95,7 +95,7 @@ wd() {
       fi
     ;;
     xls)
-      local point_list=$(ls -l "$wdd" | grep -v '^total' | grep -Eo '\b\w+\b ->.*' | awk -F' -> ' '{printf "\033[95m%14s\033[0m \033[92m%s\033[0m\n", $1, $2}')
+      local point_list=$(ls -l "$wdd/" | grep -v '^total' | grep -Eo '\b\w+\b ->.*' | awk -F' -> ' '{printf "\033[95m%14s\033[0m \033[92m%s\033[0m\n", $1, $2}')
       echo "$point_list" | grep "$2"
       return 0
     ;;
