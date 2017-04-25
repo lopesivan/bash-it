@@ -1,1 +1,0 @@
-../available/template.completion.bash
