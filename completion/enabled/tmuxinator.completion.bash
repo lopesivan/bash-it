@@ -1,1 +1,0 @@
-../available/tmuxinator.completion.bash
