@@ -1,1 +1,0 @@
-../available/luaenv.plugin.bash
