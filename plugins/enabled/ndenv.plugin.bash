@@ -1,1 +1,0 @@
-../available/ndenv.plugin.bash
