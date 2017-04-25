@@ -5,6 +5,10 @@ about-plugin 'make sure that tmux is launched in 256 color mode'
 
 alias tmux="TERM=xterm-256color tmux"
 
+_tmux_clean() {
+  tmux kill-session -a
+}
+
 _tmux_send_keys_all_panes () {
   for _pane in $(tmux list-panes -F '#P'); do
     tmux send-keys -t ${_pane} "$*" Enter
@@ -19,3 +23,4 @@ _tmux_send_keys_all_windows () {
 
 alias send-keys-all-panes="_tmux_send_keys_all_panes"
 alias send-keys-all-windows="_tmux_send_keys_all_windows"
+alias tmux-clean="_tmux_clean"
