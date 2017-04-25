@@ -1,1 +1,0 @@
-../available/vim.completion.bash
