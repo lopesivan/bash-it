@@ -1,1 +1,0 @@
-../available/projects.completion.bash
