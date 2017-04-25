@@ -8,7 +8,6 @@ docker           \
 extract          \
 fzf              \
 git              \
-gradle           \
 jenv             \
 luaenv           \
 ndenv            \
@@ -33,7 +32,6 @@ code           \
 wd             \
 pip            \
 makefile       \
-gradle         \
 tmuxinator     \
 defaults       \
 redis_alias    \
