@@ -23,8 +23,8 @@ alias vim.rplug='vim +UpdateRemotePlugins +qall'
 alias vc='vim -c:Cheetah'
 alias vx='vim "$(xpaste)"'
 alias restart.unity='sudo service lightdm restart'
-alias vimmru.list='redis-cli ZRANGE vimmru 0 -1'
-alias asciiflow="firefox file:///${HOME}/developer/asciiflow2/index.html"
+alias last.list='redis-cli ZRANGE vimmru 0 -1'
+alias asciiflow="google-chrome file:///${HOME}/developer/asciiflow2/index.html"
 
 _redis_list(){
 	redis-cli ZRANGE $1 0 -1
@@ -41,7 +41,7 @@ alias redis.get='redis-bash-cli get'
 alias redis.set='redis-bash-cli set'
 alias redis.del='redis-bash-cli del'
 alias redis.zadd='_redis_zram'
-alias vimmru.del='redis-cli DEL vimmru'
+alias last.del='redis-cli DEL vimmru'
 alias nyaovim='node ~/.ndenv/versions/v7.4.0/bin/nyaovim'
 alias uff='EMAILBOX=uff mutt'
 alias ufrj='EMAILBOX=ufrj mutt'
