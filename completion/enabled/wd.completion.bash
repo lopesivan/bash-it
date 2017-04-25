@@ -1,1 +1,0 @@
-../available/wd.completion.bash
