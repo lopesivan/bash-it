@@ -52,17 +52,25 @@ enable-plugin-tmux       \
 enable-completions       \
 enable-completion-tmux   \
 enable-completion-git    \
-enable-completion-docker
+enable-completion-docker \
+enable-plugin-python     \
+enable-completion-python \
+enable-plugin-ruby       \
+enable-completion-ruby
 
 DISABLE_BASIC =\
-disable-aliases          \
-disable-plugins          \
-disable-plugin-docker    \
-disable-plugin-tmux      \
-disable-completions      \
-disable-completion-tmux  \
-disable-completion-git   \
-disable-completion-docker
+disable-aliases           \
+disable-plugins           \
+disable-plugin-docker     \
+disable-plugin-tmux       \
+disable-completions       \
+disable-completion-tmux   \
+disable-completion-git    \
+disable-completion-docker \
+disable-plugin-python     \
+disable-completion-python \
+disable-plugin-ruby       \
+disable-completion-ruby
 
 ENABLE_FULL =\
 $(ENABLE_BASIC)          \
@@ -94,12 +102,6 @@ disable-completion-ruby  \
 disable-completion-java  \
 disable-completion-node
 
-ENABLE_PYTHON  = $(ENABLE_BASIC)  enable-plugin-python enable-completion-python
-DISABLE_PYTHON = $(DISABLE_BASIC) disable-plugin-python disable-completion-python
-
-ENABLE_RUBY    = $(ENABLE_BASIC)  enable-plugin-ruby enable-completion-ruby
-DISABLE_RUBY   = $(DISABLE_BASIC) disable-plugin-ruby disable-completion-ruby
-
 ENABLE_JAVA    = $(ENABLE_BASIC)  enable-plugin-java enable-completion-java
 DISABLE_JAVA   = $(DISABLE_BASIC) disable-plugin-java disable-completion-java
 
@@ -124,10 +126,6 @@ enable         : $(ENABLE_BASIC)
 disable        : $(DISABLE_BASIC)
 enable-full    : $(ENABLE_FULL)
 disable-full   : $(DISABLE_FULL)
-enable-python  : $(ENABLE_PYTHON)
-disable-python : $(DISABLE_PYTHON)
-enable-ruby    : $(ENABLE_RUBY)
-disable-ruby   : $(DISABLE_RUBY)
 enable-java    : $(ENABLE_JAVA)
 disable-java   : $(DISABLE_JAVA)
 enable-node    : $(ENABLE_NODE)
