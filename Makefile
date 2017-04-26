@@ -49,13 +49,15 @@ enable-aliases           \
 enable-plugins           \
 enable-plugin-docker     \
 enable-plugin-tmux       \
+enable-plugin-python     \
+enable-plugin-node       \
+enable-plugin-ruby       \
 enable-completions       \
 enable-completion-tmux   \
 enable-completion-git    \
 enable-completion-docker \
-enable-plugin-python     \
 enable-completion-python \
-enable-plugin-ruby       \
+enable-completion-node   \
 enable-completion-ruby
 
 DISABLE_BASIC =\
@@ -63,13 +65,15 @@ disable-aliases           \
 disable-plugins           \
 disable-plugin-docker     \
 disable-plugin-tmux       \
+disable-plugin-python     \
+disable-plugin-node       \
+disable-plugin-ruby       \
 disable-completions       \
 disable-completion-tmux   \
 disable-completion-git    \
 disable-completion-docker \
-disable-plugin-python     \
 disable-completion-python \
-disable-plugin-ruby       \
+disable-completion-node   \
 disable-completion-ruby
 
 ENABLE_FULL =\
@@ -105,9 +109,6 @@ disable-completion-node
 ENABLE_JAVA    = $(ENABLE_BASIC)  enable-plugin-java enable-completion-java
 DISABLE_JAVA   = $(DISABLE_BASIC) disable-plugin-java disable-completion-java
 
-ENABLE_NODE    = $(ENABLE_BASIC)  enable-plugin-node enable-completion-node
-DISABLE_NODE   = $(DISABLE_BASIC) disable-plugin-node disable-completion-node
-#
 ENABLE_CARGO   = $(ENABLE_BASIC)  enable-plugin-cargo
 DISABLE_CARGO  = $(DISABLE_BASIC) disable-plugin-cargo
 
@@ -121,23 +122,6 @@ ENABLE_PERL    = $(ENABLE_BASIC)  enable-plugin-perl
 DISABLE_PERL   = $(DISABLE_BASIC) disable-plugin-perl
 
 all: enable
-
-enable         : $(ENABLE_BASIC)
-disable        : $(DISABLE_BASIC)
-enable-full    : $(ENABLE_FULL)
-disable-full   : $(DISABLE_FULL)
-enable-java    : $(ENABLE_JAVA)
-disable-java   : $(DISABLE_JAVA)
-enable-node    : $(ENABLE_NODE)
-disable-node   : $(DISABLE_NODE)
-enable-cargo   : $(ENABLE_CARGO)
-disable-cargo  : $(DISABLE_CARGO)
-enable-rust    : $(ENABLE_RUST)
-disable-rust   : $(DISABLE_RUST)
-enable-lua     : $(ENABLE_LUA)
-disable-lua    : $(DISABLE_LUA)
-enable-perl    : $(ENABLE_PERL)
-disable-perl   : $(DISABLE_PERL)
 
 # basic
 disable-plugins:
@@ -229,4 +213,18 @@ enable-completion-docker:
 enable-completion-tmux:
 	(bash -c "source ${HOME}/developer/bash-config/it.sh; unset BASH_IT_THEME; unset GIT_HOSTING; unset NGINX_PATH; unset IRC_CLIENT; unset TODO; unset SCM_CHECK; bash-it enable completion $(COMPLETIONS_ENV_TMUX);" )
 
-clean: disable-full
+enable        : $(ENABLE_BASIC)
+disable       : $(DISABLE_BASIC)
+enable-full   : $(ENABLE_FULL)
+disable-full  : $(DISABLE_FULL)
+enable-java   : $(ENABLE_JAVA)
+disable-java  : $(DISABLE_JAVA)
+enable-cargo  : $(ENABLE_CARGO)
+disable-cargo : $(DISABLE_CARGO)
+enable-rust   : $(ENABLE_RUST)
+disable-rust  : $(DISABLE_RUST)
+enable-lua    : $(ENABLE_LUA)
+disable-lua   : $(DISABLE_LUA)
+enable-perl   : $(ENABLE_PERL)
+disable-perl  : $(DISABLE_PERL)
+clean         : disable-full
