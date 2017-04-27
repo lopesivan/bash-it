@@ -176,7 +176,6 @@ enable-completion-docker:
 enable-completion-tmux:
 	(bash -c "source ${HOME}/developer/bash-config/it.sh; unset BASH_IT_THEME; unset GIT_HOSTING; unset NGINX_PATH; unset IRC_CLIENT; unset TODO; unset SCM_CHECK; bash-it enable completion $(COMPLETIONS_ENV_TMUX);" )
 
-enable        : $(ENABLE_BASIC)
 disable       : $(DISABLE_BASIC)
 enable-full   : $(ENABLE_FULL)
 disable-full  : $(DISABLE_FULL)
@@ -195,6 +194,7 @@ disable-perl  : $(DISABLE_PERL)
 ##############################################################################
 ##############################################################################
 
+enable: $(ENABLE_BASIC)
 cargo : enable-cargo
 lua   : enable-lua
 rust  : enable-rust
