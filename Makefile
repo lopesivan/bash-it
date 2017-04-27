@@ -6,7 +6,7 @@ PLUGINS_ENV_RUST   = rustup
 PLUGINS_ENV_LUA    = luaenv
 PLUGINS_ENV_NODE   = ndenv
 PLUGINS_ENV_PERL   = plenv
-PLUGINS_ENV_TMUX   = tmuxinator tmux
+PLUGINS_ENV_TMUX   = tmuxinator tmux kill
 PLUGINS_ENV_DOCKER = docker
 
 COMPLETIONS_ENV_PYTHON = pip
@@ -15,7 +15,7 @@ COMPLETIONS_ENV_JAVA   = gradle spring
 COMPLETIONS_ENV_NODE   = grunt bundler
 COMPLETIONS_ENV_GIT    = git_flow git
 COMPLETIONS_ENV_DOCKER = docker docker-compose kitchen
-COMPLETIONS_ENV_TMUX   = tmuxinator
+COMPLETIONS_ENV_TMUX   = tmuxinator kill
 
 PLUGINS =\
 alias-completion \
@@ -42,86 +42,49 @@ bash-it        \
 dirs           \
 system
 
-ALIASES = developer
+ALIASES = developer clipboard vim redis
 
-ENABLE_BASIC =\
-enable-aliases           \
-enable-plugins           \
-enable-plugin-docker     \
-enable-plugin-tmux       \
-enable-plugin-python     \
-enable-plugin-node       \
-enable-plugin-ruby       \
-enable-completions       \
-enable-completion-tmux   \
-enable-completion-git    \
-enable-completion-docker \
-enable-completion-python \
-enable-completion-node   \
-enable-completion-ruby
+ON =       \
+enable-{aliases,plugins,completions} \
+enable-plugin-{docker,tmux,python,node,ruby} \
+enable-completion-{tmux,git,docker,python,node,ruby}
 
-DISABLE_BASIC =\
-disable-aliases           \
-disable-plugins           \
-disable-plugin-docker     \
-disable-plugin-tmux       \
-disable-plugin-python     \
-disable-plugin-node       \
-disable-plugin-ruby       \
-disable-completions       \
-disable-completion-tmux   \
-disable-completion-git    \
-disable-completion-docker \
-disable-completion-python \
-disable-completion-node   \
-disable-completion-ruby
+OFF =      \
+disable-{aliases,plugins,completions} \
+disable-plugin-{docker,tmux,python,node,ruby} \
+disable-completion-{tmux,git,docker,python,node,ruby}
 
-ENABLE_FULL =\
-$(ENABLE_BASIC)          \
-enable-plugin-python     \
-enable-plugin-ruby       \
-enable-plugin-java       \
-enable-plugin-node       \
-enable-plugin-cargo      \
-enable-plugin-rust       \
-enable-plugin-lua        \
-enable-plugin-perl       \
-enable-completion-python \
-enable-completion-ruby   \
-enable-completion-java   \
-enable-completion-node
+FULL_ON =  \
+enable-plugin-{python,ruby,java,node,cargo,rust,lua,perl} \
+enable-completion-{python,ruby,java,node}
 
-DISABLE_FULL =\
-$(DISABLE_BASIC)         \
-disable-plugin-python    \
-disable-plugin-ruby      \
-disable-plugin-java      \
-disable-plugin-node      \
-disable-plugin-cargo     \
-disable-plugin-rust      \
-disable-plugin-lua       \
-disable-plugin-perl      \
-disable-completion-python\
-disable-completion-ruby  \
-disable-completion-java  \
-disable-completion-node
+FULL_OFF = \
+disable-plugin-{python,ruby,java,node,cargo,rust,lua,perl} \
+disable-completion-{python,ruby,java,node}
 
-ENABLE_JAVA    = $(ENABLE_BASIC)  enable-plugin-java enable-completion-java
-DISABLE_JAVA   = $(DISABLE_BASIC) disable-plugin-java disable-completion-java
+ENABLE_BASIC  = $(shell bash -c "echo $(ON)")
+DISABLE_BASIC = $(shell bash -c "echo $(OFF)")
+ENABLE_FULL   = $(ENABLE_BASIC) $(shell bash -c "echo $(FULL_ON)")
+DISABLE_FULL  = $(DISABLE_BASIC) $(shell bash -c "echo $(FULL_OFF)")
 
-ENABLE_CARGO   = $(ENABLE_BASIC)  enable-plugin-cargo
-DISABLE_CARGO  = $(DISABLE_BASIC) disable-plugin-cargo
+ENABLE_JAVA   = $(ENABLE_BASIC)  enable-plugin-java enable-completion-java
+DISABLE_JAVA  = $(DISABLE_BASIC) disable-plugin-java disable-completion-java
 
-ENABLE_RUST    = $(ENABLE_BASIC)  enable-plugin-rust
-DISABLE_RUST   = $(DISABLE_BASIC) disable-plugin-rust
+ENABLE_CARGO  = $(ENABLE_BASIC)  enable-plugin-cargo
+DISABLE_CARGO = $(DISABLE_BASIC) disable-plugin-cargo
 
-ENABLE_LUA     = $(ENABLE_BASIC)  enable-plugin-lua
-DISABLE_LUA    = $(DISABLE_BASIC) disable-plugin-lua
+ENABLE_RUST   = $(ENABLE_BASIC)  enable-plugin-rust
+DISABLE_RUST  = $(DISABLE_BASIC) disable-plugin-rust
 
-ENABLE_PERL    = $(ENABLE_BASIC)  enable-plugin-perl
-DISABLE_PERL   = $(DISABLE_BASIC) disable-plugin-perl
+ENABLE_LUA    = $(ENABLE_BASIC)  enable-plugin-lua
+DISABLE_LUA   = $(DISABLE_BASIC) disable-plugin-lua
+
+ENABLE_PERL   = $(ENABLE_BASIC)  enable-plugin-perl
+DISABLE_PERL  = $(DISABLE_BASIC) disable-plugin-perl
 
 all: enable
+status:
+	@ls -hF --color=tty */enabled/*
 
 # basic
 disable-plugins:
@@ -227,4 +190,15 @@ enable-lua    : $(ENABLE_LUA)
 disable-lua   : $(DISABLE_LUA)
 enable-perl   : $(ENABLE_PERL)
 disable-perl  : $(DISABLE_PERL)
-clean         : disable-full
+
+##############################################################################
+##############################################################################
+##############################################################################
+
+cargo : enable-cargo
+lua   : enable-lua
+rust  : enable-rust
+perl  : enable-perl
+full  : enable-full
+java  : enable-java
+clean : disable-full
