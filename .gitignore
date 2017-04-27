@@ -1,3 +1,9 @@
 aliases/enabled/*
 completion/enabled/*
 plugins/enabled/*
+
+.lua-version
+.ruby-version
+.python-version
+.java-version
+.node-version
