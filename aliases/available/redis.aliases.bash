@@ -16,9 +16,8 @@ alias redis.get='redis-bash-cli get'
 alias redis.set='redis-bash-cli set'
 alias redis.del='redis-bash-cli del'
 alias redis.zadd='_redis_zram'
+
 alias last.list='redis-cli ZRANGE vimmru 0 -1'
 alias last.del='redis-cli DEL vimmru'
-alias uff='EMAILBOX=uff mutt'
-alias ufrj='EMAILBOX=ufrj mutt'
 
 # vi:set nu nowrap:
