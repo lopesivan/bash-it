@@ -19,12 +19,16 @@ COMPLETIONS_ENV_TMUX   = tmuxinator kill
 
 PLUGINS =\
 alias-completion \
+cursorblue       \
+keycode          \
 bangsh           \
 dirs             \
 extract          \
 fzf              \
 git              \
 projects
+
+#cursorred       \
 
 COMPLETIONS =\
 completion     \
@@ -42,7 +46,7 @@ bash-it        \
 dirs           \
 system
 
-ALIASES = developer clipboard vim redis
+ALIASES = developer xclip vim redis mutt
 
 ON =       \
 enable-{aliases,plugins,completions} \
@@ -194,7 +198,7 @@ disable-perl  : $(DISABLE_PERL)
 ##############################################################################
 ##############################################################################
 
-enable: $(ENABLE_BASIC)
+enable: $(ENABLE_BASIC) cargo
 cargo : enable-cargo
 lua   : enable-lua
 rust  : enable-rust
