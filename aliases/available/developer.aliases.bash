@@ -20,10 +20,4 @@ alias l='ls -CF'                                       #
 alias restart.unity='sudo service lightdm restart'
 alias asciiflow="google-chrome file:///${HOME}/developer/asciiflow2/index.html"
 
-alias last.list='redis-cli ZRANGE vimmru 0 -1'
-alias last.del='redis-cli DEL vimmru'
-
-alias uff='EMAILBOX=uff mutt'
-alias ufrj='EMAILBOX=ufrj mutt'
-
 # vi:set nu nowrap:
