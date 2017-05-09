@@ -8,6 +8,7 @@ PLUGINS_ENV_NODE   = ndenv
 PLUGINS_ENV_PERL   = plenv
 PLUGINS_ENV_TMUX   = tmuxinator tmux kill
 PLUGINS_ENV_DOCKER = docker
+PLUGINS_BY_IVAN    = printfx keycode cursorblue
 
 COMPLETIONS_ENV_PYTHON = pip
 COMPLETIONS_ENV_RUBY   = gem
@@ -19,23 +20,21 @@ COMPLETIONS_ENV_TMUX   = tmuxinator kill
 
 PLUGINS =\
 alias-completion \
-cursorblue       \
-keycode          \
 bangsh           \
 dirs             \
 extract          \
 fzf              \
 git              \
-projects
+projects         \
+$(PLUGINS_BY_IVAN)
 
-#cursorred       \
+#cursorred
 
+#MY_CODE     = tp xp code
+MY_CODE     = tp xp
 COMPLETIONS =\
 completion     \
 template       \
-tp             \
-xp             \
-code           \
 wd             \
 makefile       \
 defaults       \
@@ -44,7 +43,8 @@ projects       \
 vim            \
 bash-it        \
 dirs           \
-system
+system         \
+$(MY_CODE)
 
 ALIASES = developer xclip vim redis mutt
 

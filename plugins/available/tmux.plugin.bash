@@ -3,7 +3,7 @@
 cite about-plugin
 about-plugin 'make sure that tmux is launched in 256 color mode'
 
-alias tmux="TERM=screen-256color tmux"
+#alias tmux="TERM=screen-256color tmux"
 #alias send-keys-all-windows="_tmux_send_keys_all_windows"
 
 _tmux_clean() {
