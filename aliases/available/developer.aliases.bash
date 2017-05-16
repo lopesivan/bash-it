@@ -20,4 +20,9 @@ alias l='ls -CF'                                       #
 alias restart.unity='sudo service lightdm restart'
 alias asciiflow="google-chrome file:///${HOME}/developer/asciiflow2/index.html"
 
+alias ssh.xoom='sshpass -p admin ssh tablet.xoom'
+alias ssh.milestone='sshpass -p admin ssh celular.milestone'
+alias ssh.motorola='sshpass -p admin ssh celular.motorola'
+alias ssh.push='sshpass -p admin git push'
+
 # vi:set nu nowrap:
